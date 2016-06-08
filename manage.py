@@ -9,6 +9,7 @@ app = create_app(os.getenv('TWEZANA_CONFIG') or 'default')
 manager = Manager(app)
 migrate = Migrate(app, db)
 
+# make_shell_context() function registers the application and database instances
 def make_shell_context():
 	return dict(app=app, db=db, User=User, Role=Role)
 manager.add_command("shell", Shell(make_context=make_shell_context))
