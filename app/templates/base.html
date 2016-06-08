@@ -1,0 +1,32 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Twezana{% endblock %}
+
+{% block scripts %}
+
+{{ super() }} 
+{{ moment.include_moment() }}
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<link rel="stylesheet" href="{{ url_for('static', filename = 'js/bootstrap.min.js') }}" type="text/js">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/layout.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap-responsive.min.css') }}" type="text/css"> 
+{% endblock %}
+
+{% include 'navbar.html' %}
+
+{% block content %}
+<div class="container">
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% block page_content %}
+    {% endblock %}
+    
+</div>
+{% endblock %}
