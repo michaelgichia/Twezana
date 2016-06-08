@@ -1,19 +1,16 @@
 {% block navbar %}
 <div class="navbar navbar-inverse">
     <div class="navbar-inner">
-        <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="#">Project name</a>
-        <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-        <div class="nav-collapse collapse navbar-right">
+        <a class="brand" href="#">Twezana</a>
+        <div class="nav navbar-nav navbar-right">
             <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#register">Register</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
@@ -21,15 +18,4 @@
     <!-- /.navbar-inner -->
 </div>
 <!-- /.navbar -->
-<!-- Le javascript
-    ================================================== -->
-<script>
-! function($) {
-    $(function() {
-        // carousel demo
-        $('#myCarousel').carousel()
-    })
-}(window.jQuery)
-</script>
-<script src="../assets/js/holder/holder.js"></script>
 {% endblock %}
