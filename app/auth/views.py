@@ -2,7 +2,8 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import logout_user, login_required, current_user, login_user 
 from . import auth
 from ..models import User 
-from .form import LoginForm
+from .form import LoginForm, RegistrationForm
+from .. import db 
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -25,7 +26,7 @@ def logout():
 
 
 
-	
+
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
