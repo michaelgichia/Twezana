@@ -1,0 +1,13 @@
+Dear {{ user.username }},
+
+Thanks for signing up with Twezana! You must follow this link to activate your account:
+
+{{ url_for('auth.confirm', token=token, _external=True) }}
+
+Welcome and don't hesitate to contact us with your feedback.
+
+Sincerely,
+
+The Twezana Team
+
+https://www.Twezana.com
