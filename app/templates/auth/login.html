@@ -1,16 +1,17 @@
 <!-- Login Form -->
-{% extends 'base.html' %} 
+{% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}Twezana - Login{% endblock %}
 
 {% block page_content %}
-<div class="col-md-4">
-    <fieldset>
-        <legend>
-            <h1>Login</h1></legend>
-        {{ wtf.quick_form(login_form) }}
-    </fieldset>
+<div class="page-header">
+    <h1>Login</h1>
 </div>
-
+<div class="col-md-4">
+    {{ wtf.quick_form(login_form) }}
+    <br>
+    <p>New user? <a href="{{ url_for('auth.register') }}">Click here to register</a>.</p>
+</div>
 {% endblock %}
+
