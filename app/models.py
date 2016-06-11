@@ -3,13 +3,41 @@ from flask import current_app
 from . import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-from . import login_manager 
+from . import db, login_manager
+
+class Permission:
+	USER = 0x01
+	STAFF = 0x02
+	MODERATE_COMMENTS = 0x08 
+	ADMINISTER = 0x80
+ 
 
 class Role(db.Model):
 	__tablename__ = 'roles'
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(64), unique=True)
+	default = db.Column(db.Boolean, default=False, index=True)
+	permissions = db.Column(db.Integer)
 	users = db.relationship('User', backref='role')
+
+	@staticmethod
+	def insert_roles():
+		roles = {
+			'User': (Permission.USER |
+					 Permission.STAFF, True),
+            'Moderator': (Permission.USER |
+                          Permission.STAFF |
+                          Permission.MODERATE_COMMENTS, False),
+            'Administrator': (0xff, False)
+			}
+		for r in roles:
+			role = Role.query.filter_by(name=r).first()
+			if role is None:
+				role = Role(name=r)
+			role.permissions = roles[r][0]
+			role.default = roles[r][1]
+			db.session.add(role)
+		db.session.commit()
 
 	def __repr__(self):
 		return '<Role %r>' % self.name
@@ -61,3 +89,4 @@ class User(UserMixin, db.Model):
 
 	def __repr__(self):
 		return '<User %r>' % self.username
+
